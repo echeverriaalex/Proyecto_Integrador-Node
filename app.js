@@ -6,18 +6,15 @@ const port = process.env.PORT ||  3000;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-9
-//app.use(connectDB)
+app.use(connectDB)
 
-/*
 app.listen(port, () => { 
     console.log(`http://localhost:${port}`)
 })
-*/
 
-
+/*
 const startServer = async () => {
-    await connectDB(); // 🔁 Solo se conecta una vez
+    //await connectDB(); // 🔁 Solo se conecta una vez
 
     app.listen(port, () => {
         console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
@@ -25,3 +22,4 @@ const startServer = async () => {
 };
 
 startServer();
+*/
