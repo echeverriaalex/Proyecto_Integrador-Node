@@ -1,5 +1,4 @@
-import User from "../models/userModel"
-
+import User from "../models/userModel.js"
 
 export const getUsers = async(req, res) => {
     try{
@@ -35,13 +34,36 @@ export const createUser = async(req, res) => {
     catch(error){
         res.status(500).json({ message: error.message });
     }
+}
+
+export const updateUser = async(req, res) => {
+    try{
+        const user = await User.findAndUpdate(
+            {
+                ema: req.body.email
+            },
+            {
+                name: req.body.name,
+                lasname: req.body.lasname,
+                password: req.body.password,
+                active: req.body.activeil,
+            },
+            {new: true}
+        )
+        res.status(200).json(user);
+    }
+    catch(error){
+        res.status(500).json({ message: error.message });
+    }
 
 }
 
-export const updateUser = () => {
-
-}
-
-export const deleteUser = () => {
-
+export const deleteUser = async(req, res) => {
+    try{
+        const user = await User.findAndDelete({ email: req.body.email })
+        res.status(200).json(user);
+    }
+    catch(error){
+        res.status(500).json({ message: error.message });
+    }
 }
